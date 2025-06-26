@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anish Kumar Sinha Portfolio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    /* Reset some margin/padding */
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #faf6f1;
+      color: #222;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Container setup */
+    .container-main {
+      display: flex;
+      min-height: 100vh;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      position: relative;
+      z-index: 1;
+      gap: 2rem;
+    }
+
+    /* Left side vertical social nav & brand */
+    .left-sidebar {
+      position: fixed;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      z-index: 10;
+      font-size: 1rem;
+    }
+
+    .left-sidebar .brand {
+      margin-bottom: 2rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      user-select: none;
+    }
+
+    .left-sidebar .brand i {
+      color: #555;
+      font-size: 1.3rem;
+    }
+
+    .left-sidebar a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 1.2rem;
+    }
+    .left-sidebar a:hover {
+      color: #f0c330;
+    }
+
+    .left-sidebar .divider {
+      width: 2px;
+      height: 3rem;
+      background: #bbb;
+      margin: 1rem 0;
+    }
+
+    /* Hand image container */
+    .hand-container {
+      flex: 0 0 180px;
+      position: fixed;
+      top: 50%;
+      left: 5rem;
+      transform: translateY(-50%);
+      z-index: 5;
+      max-width: 180px;
+    }
+
+    /* The hand image is left pointing horizontally */
+    .hand-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Right side content */
+    .content-container {
+      flex: 1;
+      margin-left: 240px;
+      max-width: 700px;
+      position: relative;
+      z-index: 15;
+      padding-top: 3rem;
+    }
+
+    /* Navigation top right */
+    nav.top-nav {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 20;
+      user-select: none;
+    }
+
+    nav.top-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 1.8rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    nav.top-nav ul li a {
+      text-decoration: none;
+      color: #222;
+      transition: color 0.3s ease;
+    }
+
+    nav.top-nav ul li a:hover {
+      color: #f0c330;
+    }
+
+    /* Heading with highlighted first letter */
+    .main-heading {
+      font-weight: 600;
+      font-size: 2.5rem;
+      margin-bottom: 0.3rem;
+      user-select: none;
+      font-family: 'Georgia', serif;
+    }
+
+    .main-heading span.first-letter {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #f0c330;
+      font-family: 'Georgia', serif;
+      user-select: none;
+    }
+
+    /* Decorative dividing line */
+    .divider-line {
+      height: 2px;
+      width: 56%;
+      background-color: #ccc;
+      margin: 0.5rem 0 1rem 0;
+      opacity: 0.5;
+    }
+
+    /* Intro paragraph styling */
+    .intro-text {
+      color: #424242;
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 90%;
+    }
+
+    .intro-text b {
+      font-weight: 700;
+      color: #222;
+    }
+
+    .intro-text a.highlight {
+      font-weight: 600;
+      color: #f0c330;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .intro-text a.highlight:hover {
+      color: #d4af37;
+      text-decoration: underline;
+    }
+
+    /* Abstract shapes styling */
+    .abstract-shape {
+      position: fixed;
+      border-radius: 50%;
+      opacity: 0.3;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .shape-yellow-small {
+      width: 100px;
+      height: 90px;
+      background-color: #f0c330;
+      bottom: 12%;
+      left: 9%;
+      clip-path: ellipse(50% 60% at 50% 50%);
+      opacity: 0.4;
+    }
+
+    .shape-grey-medium {
+      width: 160px;
+      height: 130px;
+      background-color: #9b9ea4;
+      bottom: 7%;
+      right: 32%;
+      clip-path: ellipse(50% 70% at 50% 50%);
+      opacity: 0.2;
+    }
+
+    .shape-grey-large-left {
+      width: 230px;
+      height: 250px;
+      background-color: #c7c9cc;
+      top: 40%;
+      left: 0;
+      clip-path: ellipse(40% 55% at 50% 50%);
+      opacity: 0.15;
+      z-index: 1;
+    }
+
+    /* Diamond shape with moon icon on right */
+    .diamond-shape {
+      position: fixed;
+      border: 3px solid #f0c330;
+      width: 140px;
+      height: 140px;
+      right: 6%;
+      top: 34%;
+      transform: rotate(45deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 12;
+      background: transparent;
+      user-select: none;
+    }
+
+    .diamond-shape .moon-icon {
+      transform: rotate(-45deg);
+      font-size: 3rem;
+      color: #f0c330;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .container-main {
+        padding: 1rem;
+        flex-direction: column;
+        max-width: 100%;
+      }
+      .left-sidebar {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 1rem;
+        transform: none;
+        top: auto;
+        left: auto;
+        gap: 1rem;
+      }
+      .left-sidebar .divider {
+        display: none;
+      }
+      .hand-container {
+        position: static;
+        max-width: 100px;
+        margin: 0 auto 1.5rem auto;
+        transform: none;
+        order: -1;
+      }
+      .content-container {
+        margin-left: 0;
+        max-width: 100%;
+        padding-top: 0;
+      }
+      nav.top-nav {
+        position: static;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      nav.top-nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .diamond-shape {
+        display: none;
+      }
+      
+      .main-heading {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+      .intro-text {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Left Sidebar with Social Icons and Brand -->
+  <div class="left-sidebar" aria-label="Social Media Links and Brand">
+    <div class="brand" aria-label="Brand name">
+      <i class="fas fa-star"></i> ANISH KUMAR SINHA
+    </div>
+    <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="#" aria-label="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="#" aria-label="Codepen" title="Codepen"><i class="fab fa-codepen"></i></a>
+    <div class="divider" aria-hidden="true"></div>
+  </div>
+
+  <!-- Hand Image on left side -->
+  <div class="hand-container" aria-hidden="true">
+    <img src="https://i.ibb.co/7SsL2zL/hand-pointing-left.png" alt="Hand pointing left" />
+  </div>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav" aria-label="Primary navigation">
+    <ul>
+      <li><a href="#home" tabindex="0">Home</a></li>
+      <li><a href="#about" tabindex="0">About</a></li>
+      <li><a href="#resume" tabindex="0">Resume</a></li>
+      <li><a href="#skills" tabindex="0">Skills</a></li>
+      <li><a href="#projects" tabindex="0">Projects</a></li>
+      <li><a href="#contact" tabindex="0">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main content container -->
+  <div class="content-container" role="main">
+    <h1 class="main-heading">
+      <span class="first-letter">T</span>his is it. ;)
+    </h1>
+    <div class="divider-line" aria-hidden="true"></div>
+    <p class="intro-text">
+      Anish Kumar Sinha is an Indian <b>UI/UX Designer & Front End Developer</b> with a passion for designing beautiful and functional user experiences. Recently, he has joined a permanent <a href="#" class="highlight" tabindex="0">CTO role</a>. He is skilled with emerging HTML and CSS and more obsessed with developmental & technical frontend matters he has been building projects and working his freelance business on and after he was 19.
+    </p>
+    <p class="intro-text">
+      He holds a <b>bachelor degree in Computer Applications</b>. During his graduation, he also learnt advanced methods in <b>Python</b> and <b>JavaScript</b> such as working with <b>Excel (business sheets, scripts.cjs)</b> and more. Currently focused mainly on <b>node.js</b>. When he's not busy he is also learning <b>Go</b>.
+    </p>
+    <p class="intro-text">
+      He strongly believes great design is the combination between design skills, web branding and user design. He has been designing a <b>3D Hover area</b>.
+    </p>
+    <p class="intro-text">
+      When he's not designing, he is probably working out and relaxing eating pasta, gaming or meditating or occasionally collaborating in open source.
+    </p>
+  </div>
+
+  <!-- Abstract shapes -->
+  <div class="abstract-shape shape-yellow-small" aria-hidden="true"></div>
+  <div class="abstract-shape shape-grey-medium" aria-hidden="true"></div>
+  <div class="abstract-shape shape-grey-large-left" aria-hidden="true"></div>
+
+  <!-- Diamond shape with moon icon on right -->
+  <div class="diamond-shape" aria-hidden="true">
+    <i class="fas fa-moon moon-icon"></i>
+  </div>
+
+  <!-- Bootstrap JS (optional, for features if needed) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
